@@ -16,3 +16,9 @@
     </tr>
   </tbody>
 </table>
+
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = getServerData($event)">
+</mat-paginator>

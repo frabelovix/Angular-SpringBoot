@@ -7,10 +7,12 @@ import com.cursos.restauranteapi.repository.CustomerRepositorio;
 import com.cursos.restauranteapi.service.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepositorio repositorio;
 
@@ -23,8 +25,8 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer delete(int id) {
         Customer p = repositorio.findById(id);
         repositorio.deleteById(id);
-        
-        return p;        
+
+        return p;
     }
 
     @Override
@@ -40,5 +42,14 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer listarId(int id) {
         return repositorio.findById(id);
-    }  
+    }
+
+    @Override
+    public Page<Customer> listaPaginada(Pageable p) {
+
+        return repositorio.findAll(p);
+    }
+
+
+    
 }

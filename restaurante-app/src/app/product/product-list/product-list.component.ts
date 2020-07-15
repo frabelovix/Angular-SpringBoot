@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/app/shared/item.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PageEvent } from '@angular/material';
+import { Page } from 'src/app/shared/page.model';
 
 @Component({
   selector: 'app-product-list',
@@ -10,6 +12,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductListComponent implements OnInit {
   productList;
+
+  // MatPaginator Inputs
+  pageIndex = 0;
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  // MatPaginator Output
+  pageEvent: PageEvent;
+
+  page: Page;
+
 
   constructor(private service: ItemService,
     private router: Router,
@@ -20,11 +33,16 @@ export class ProductListComponent implements OnInit {
   }
 
   refreshList() {
-    this.service.getProductList().then(res => this.productList = res);
+    this.service.getProductListPaginated(this.pageIndex, this.pageSize)
+      .then(res => {
+        this.page = res,
+        this.productList = this.page.content;
+        this.length = this.page.totalElements;
+      });
   }
 
   openForEdit(id: number) {
-     this.router.navigate(['/product/edit/' + id]);
+    this.router.navigate(['/product/edit/' + id]);
   }
 
   onProductDelete(id: number) {
@@ -34,6 +52,13 @@ export class ProductListComponent implements OnInit {
         this.toastr.warning('Registro excluído com sucesso!', 'Restaurente App.');
       });
     }
+  }
+
+  getServerData(event?: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.refreshList();
+
   }
 
 }

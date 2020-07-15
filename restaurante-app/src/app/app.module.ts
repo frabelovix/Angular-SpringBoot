@@ -22,7 +22,8 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { NavComponent } from './nav/nav.component';
-import { MatSidenavModule, MatListModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatSidenavModule, MatListModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MatSidenavModule, MatListModule, MatCardModule, MatButtonModule, MatFor
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   entryComponents:[OrderItemsComponent],
   providers: [OrderService],

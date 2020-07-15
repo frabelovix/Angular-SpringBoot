@@ -20,6 +20,8 @@ import com.cursos.restauranteapi.service.ItemService;
 import com.cursos.restauranteapi.service.OrdersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -142,4 +144,11 @@ public class OrdersServiceImpl implements OrdersService {
         itemRepositorio.deleteById(id);
     }
 
+    @Override
+    public Page<Orders> listaPaginada(Pageable p) {
+        return repositorio.findAll(p);
+    }
+
+
+    
 }

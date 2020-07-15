@@ -16,6 +16,8 @@ import com.cursos.restauranteapi.service.OrdersService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,10 +43,18 @@ public class OrderController {
     @Autowired
     OrdersService service;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Orders> listar() {
         return service.lista();
+    }    
+
+    @GetMapping
+    public Page<Orders> listaPaginada(Pageable p) {
+        return service.listaPaginada(p);
     }
+  
+
+
 
     @GetMapping(path = { "/{id}" })
     public OrderDto listarId(@PathVariable("id") int id) {

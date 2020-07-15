@@ -29,12 +29,17 @@ export class OrderService {
      } else {
       return this.http.post(environment.apiURL + '/order', body);
      }
-    
+
   }
 
   getOrderList() {
-    return this.http.get(environment.apiURL + '/order').toPromise();
+    return this.http.get(environment.apiURL + '/order/all').toPromise();
   }
+
+  getOrderListPaginated(index: number, size: number): any  {
+    return this.http.get(environment.apiURL + '/order?page=' + index + '&size=' + size).toPromise();
+  }
+
 
   getOrderByID(id:number):any {
     return this.http.get(environment.apiURL + '/order/' + id).toPromise();
@@ -44,8 +49,7 @@ export class OrderService {
     return this.http.delete(environment.apiURL + '/order/' + id).toPromise();
   }
 
-  deleteOrderItem(id: number) {
-    console.log(id);
+  deleteOrderItem(id: number) {    
     return this.http.delete(environment.apiURL + '/order/item/' + id).toPromise();
   }
 

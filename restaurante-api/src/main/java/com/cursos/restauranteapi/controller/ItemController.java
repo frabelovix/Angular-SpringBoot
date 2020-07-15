@@ -9,6 +9,10 @@ import com.cursos.restauranteapi.model.Item;
 import com.cursos.restauranteapi.service.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +25,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-@RequestMapping({"product"})
+@RequestMapping({ "product" })
 public class ItemController {
     @Autowired
     ItemService service;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Item> listar() {
         return service.lista();
+    }
+
+    @GetMapping
+    public Page<Item> listaPaginada(Pageable p) {
+        return service.listaPaginada(p);
     }
 
     @GetMapping(path = { "/{id}" })
@@ -38,22 +47,20 @@ public class ItemController {
 
     @PostMapping
     public Item novo(@RequestBody ItemDto item) {
-    
+
         return service.add(item);
     }
 
     @PutMapping(path = { "/{id}" })
     public Item editar(@RequestBody ItemDto item, @PathVariable("id") int id) {
-        item.setItemId(id);               
-        
+        item.setItemId(id);
+
         return service.edit(item);
     }
 
     @DeleteMapping(path = { "/{id}" })
     public void delete(@PathVariable("id") int id) {
         service.delete(id);
-    }    
+    }
 
-
-    
 }

@@ -10,9 +10,15 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  getCustomerList() {
-    return this.http.get(environment.apiURL + '/customer').toPromise();
+  getCustomerList(): any  {
+    return this.http.get(environment.apiURL + '/customer/all').toPromise();
   }
+
+  getCustomerListPaginated(index: number, size: number): any  {
+    return this.http.get(environment.apiURL + '/customer?page=' + index + '&size=' + size).toPromise();
+  }
+
+
 
   getCustomerByID(id: number): any {
     return this.http.get(environment.apiURL + '/customer/' + id).toPromise();
