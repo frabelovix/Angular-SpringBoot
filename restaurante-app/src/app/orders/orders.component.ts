@@ -57,7 +57,7 @@ export class OrdersComponent implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.refreshList();
-
+    return event;
   }
 
 }

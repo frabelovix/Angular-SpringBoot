@@ -59,6 +59,8 @@ export class CustomerListComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.refreshList();
 
+    return event;
+
   }
 
 }

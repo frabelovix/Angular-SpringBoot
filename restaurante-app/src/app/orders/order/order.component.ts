@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   isValid = true;
   orderDto: OrderDto;
 
-  constructor(private service: OrderService,
+  constructor(public service: OrderService,
     private dialog: MatDialog,
     private customerService: CustomerService,
     private toastr: ToastrService,
