@@ -1723,8 +1723,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false,
-    apiURL: 'http://localhost:8080/restaurante'
+    production: true,
+    apiURL: 'https://fr-restaurante.herokuapp.com'
 };
 /*
  * For easier debugging in development mode, you can import the following file
