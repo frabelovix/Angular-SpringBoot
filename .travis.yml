@@ -10,7 +10,7 @@ matrix:
       before_script:
         - cd ./restaurante-api/
       script:
-        #- mvn package
+        - mvn package
 
     - language: node_js
       node_js: node
