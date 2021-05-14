@@ -1,0 +1,28 @@
+dist: trusty
+
+branches:
+  only: master
+
+matrix:
+  include:
+    - language: java
+      jdk: oraclejdk11
+      before_script:
+        - cd ./restaurante-api/
+      script:
+        - ./mvnw test -B -q
+
+    - language: node_js
+      node_js: node
+      before_script:
+        - cd ./restaurante-app/
+        - npm install -g @angular/cli
+      script:
+        - ng build --prod
+        #- ng build --prod --base-href https://github.com/TJZhou/pigeon-calendar-springboot/tree/master/frontend/
+                                      #https://github.com/frabelovix/Angular-SpringBoot/tree/master/restaurante-app 
+      deploy:
+        provider: heroku
+        api_key:
+          - secure: $SECURE_KEY
+        app: $APP                                         
