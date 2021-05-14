@@ -9,7 +9,8 @@ matrix:
       jdk: oraclejdk11
       before_script:
         - cd ./restaurante-api/
-      #script:
+      script:
+        - mvn package
       #  - ./mvnw test -B
 
     - language: node_js
