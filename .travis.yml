@@ -10,18 +10,16 @@ matrix:
       before_script:
         - cd ./restaurante-api/
       script:
-        - mvn package
-      #  - ./mvnw test -B
+        #- mvn package
 
     - language: node_js
       node_js: node
       before_script:
         - cd ./restaurante-app/
-        #- npm install -g @angular/cli
+        - npm install -g @angular/cli
       script:
         - ng build --prod
-        #- ng build --prod --base-href https://github.com/TJZhou/pigeon-calendar-springboot/tree/master/frontend/
-                                      #https://github.com/frabelovix/Angular-SpringBoot/tree/master/restaurante-app 
+        #- ng build --prod --base-href https://github.com/frabelovix/Angular-SpringBoot/tree/master/restaurante-app 
       deploy:
         provider: heroku
         api_key:
