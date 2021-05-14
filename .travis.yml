@@ -10,7 +10,7 @@ matrix:
       before_script:
         - cd ./restaurante-api/
       script:
-        - ./mvnw test -B -q
+        - mvnw test -B -q
 
     - language: node_js
       node_js: node
